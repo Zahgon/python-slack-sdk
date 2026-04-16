@@ -246,12 +246,7 @@ class BaseClient:
           for response in client.conversations_list(limit=100):
               # do something with each response here
         """
-        response = self._perform_urllib_http_request(url=api_url, args=req_args)
-        return {
-            "status_code": int(response["status"]),
-            "headers": dict(response["headers"]),
-            "data": json.loads(response["body"]),
-        }
+        pass
 
     def _urllib_api_call(
         self,
@@ -485,13 +480,4 @@ class BaseClient:
         Returns:
             True if signatures matches
         """
-        warnings.warn(
-            "As this method is deprecated since slackclient 2.6.0, "
-            "use `from slack.signature import SignatureVerifier` instead",
-            DeprecationWarning,
-        )
-        format_req = str.encode(f"v0:{timestamp}:{data}")
-        encoded_secret = str.encode(signing_secret)
-        request_hash = hmac.new(encoded_secret, format_req, hashlib.sha256).hexdigest()
-        calculated_signature = f"v0={request_hash}"
-        return hmac.compare_digest(calculated_signature, signature)
+        pass
